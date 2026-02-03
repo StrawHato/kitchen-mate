@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Ingredient List</h1>
+  {% if ingredient_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      {% for ingredient in ingredient_list %}
+        <tr>
+          <td>
+            {{ ingredient.id }}
+          </td>
+          <td>
+            {{ ingredient.name }}
+          </td>
+          <td>
+            <a href="#">Update</a>
+          </td>
+          <td>
+            <a href="#">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no Dish Types in the Kitchen</p>
+  {% endif %}
+{% endblock %}

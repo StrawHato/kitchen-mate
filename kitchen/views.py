@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.views import generic
 
 from kitchen.models import DishType, Cook, Ingredient, Dish
 
@@ -16,3 +17,9 @@ def index(request: HttpRequest) -> HttpResponse:
     }
 
     return render(request, "kitchen/index.html", context)
+
+
+class DishListView(generic.ListView):
+    model = Dish
+    queryset = Dish.objects.all().select_related("dish_type")
+    paginate_by = 5

@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen.models import DishType, Cook, Ingredient, Dish
@@ -30,6 +31,13 @@ class DishTypeListView(generic.ListView):
     context_object_name = "dish_type_list"
     template_name = "kitchen/dish_type_list.html"
     paginate_by = 5
+
+
+class DishTypeCreateView(generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:dish-types-list")
+    template_name = "kitchen/dish_type_form.html"
 
 
 class CookListView(generic.ListView):

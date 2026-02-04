@@ -5,13 +5,15 @@ from kitchen.views import (
     DishListView,
     DishTypeListView,
     CookListView,
-    IngredientListView
+    IngredientListView,
+    DishTypeCreateView,
 )
 
 urlpatterns = [
     path("", index, name="main-page"),
     path("dishes/", DishListView.as_view(), name="dish-list"),
     path("types/", DishTypeListView.as_view(), name="dish-types-list"),
+    path("types/create/", DishTypeCreateView.as_view(), name="dish-type-create"),
     path("cooks/", CookListView.as_view(), name="cook-list"),
     path("ingredients/", IngredientListView.as_view(), name="ingredient-list"),
 ]

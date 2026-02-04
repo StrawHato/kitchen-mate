@@ -46,7 +46,7 @@ class Dish(models.Model):
     ingredients = models.ManyToManyField(Ingredient, related_name="dishes")
     cooks = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name="cooks"
+        related_name="dishes"
     )
 
     class Meta:

@@ -61,3 +61,9 @@ class CookListView(generic.ListView):
 class IngredientListView(generic.ListView):
     model = Ingredient
     paginate_by = 5
+
+
+class IngredientCreateView(generic.CreateView):
+    model = Ingredient
+    fields = "__all__"
+    success_url = reverse_lazy("kitchen:ingredient-list")

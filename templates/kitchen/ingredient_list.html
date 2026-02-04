@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Ingredient List</h1>
+  <h1>Ingredient List
+    <a href="{% url 'kitchen:ingredient-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
   {% if ingredient_list %}
     <table class="table">
       <tr>

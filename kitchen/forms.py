@@ -53,3 +53,12 @@ class DishTypeSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "search by name"}),
     )
+
+
+class DishSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "search by name"}),
+    )

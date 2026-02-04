@@ -12,7 +12,8 @@ from kitchen.forms import (
     CookExperienceUpdateForm,
     DishTypeSearchForm,
     DishSearchForm,
-    IngredientSearchForm
+    IngredientSearchForm,
+    CookSearchForm
 )
 from kitchen.models import DishType, Cook, Ingredient, Dish
 
@@ -131,6 +132,21 @@ class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     paginate_by = 5
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CookListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = CookSearchForm(
+            initial={"username": username},
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = get_user_model().objects.all()
+        form = CookSearchForm(self.request.GET)
+        if form.is_valid():
+            queryset = queryset.filter(username__icontains=form.cleaned_data["username"])
+        return queryset
+
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
@@ -202,7 +218,7 @@ class IngredientDeleteView(LoginRequiredMixin, generic.DeleteView):
 def toggle_assign_to_dish(request: HttpRequest, pk) -> HttpResponseRedirect:
     cook = get_user_model().objects.get(id=request.user.id)
     if (
-        Dish.objects.get(pk=pk) in cook.dishes.all()
+            Dish.objects.get(pk=pk) in cook.dishes.all()
     ):
         cook.dishes.remove(pk)
     else:

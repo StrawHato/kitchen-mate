@@ -73,3 +73,8 @@ class IngredientUpdateView(generic.UpdateView):
     model = Ingredient
     fields = "__all__"
     success_url = reverse_lazy("kitchen:ingredient-list")
+
+
+class IngredientDeleteView(generic.DeleteView):
+    model = Ingredient
+    success_url = reverse_lazy("kitchen:ingredient-list")

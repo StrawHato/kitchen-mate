@@ -1,7 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -144,3 +145,15 @@ class IngredientUpdateView(LoginRequiredMixin, generic.UpdateView):
 class IngredientDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Ingredient
     success_url = reverse_lazy("kitchen:ingredient-list")
+
+
+@login_required
+def toggle_assign_to_dish(request: HttpRequest, pk) -> HttpResponseRedirect:
+    cook = get_user_model().objects.get(id=request.user.id)
+    if (
+        Dish.objects.get(pk=pk) in cook.dishes.all()
+    ):
+        cook.dishes.remove(pk)
+    else:
+        cook.dishes.add(pk)
+    return redirect("kitchen:dish-detail", pk=pk)

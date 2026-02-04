@@ -14,7 +14,13 @@
 
   <p>Dish Type: {{ dish.dish_type }}</p>
   <p>Description: {{ dish.description }}</p>
-  <h3>Cooks</h3>
+  <h3>Cooks
+    {% if user in dish.cooks.all %}
+      <a href="{% url 'kitchen:toggle-assign' pk=dish.id %}" class="btn btn-danger link-to-page">Delete me from this dish</a>
+    {% else %}
+      <a href="{% url 'kitchen:toggle-assign' pk=dish.id %}" class="btn btn-primary link-to-page">Assign me to this dish</a>
+    {% endif %}
+  </h3>
   <hr>
   <ul>
     {% for cook in dish.cooks.all %}

@@ -26,6 +26,11 @@ class DishListView(generic.ListView):
     paginate_by = 5
 
 
+class DishDetailView(generic.DetailView):
+    model = Dish
+    paginate_by = 5
+
+
 class DishTypeListView(generic.ListView):
     model = DishType
     context_object_name = "dish_type_list"

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from kitchen.models import Dish, Ingredient
+from kitchen.models import Dish, Ingredient, Cook
 
 
 class DishForm(forms.ModelForm):
@@ -33,3 +33,14 @@ class CookCreationForm(UserCreationForm):
             "last_name",
             "years_of_experience",
         )
+
+
+class CookExperienceUpdateForm(forms.ModelForm):
+    years_of_experience = forms.IntegerField(
+        min_value=0,
+        max_value=100,
+    )
+
+    class Meta:
+        model = Cook
+        fields = ("years_of_experience",)

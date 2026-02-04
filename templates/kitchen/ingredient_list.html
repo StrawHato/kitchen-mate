@@ -23,7 +23,7 @@
             {{ ingredient.name }}
           </td>
           <td>
-            <a href="#">Update</a>
+            <a href="{% url 'kitchen:ingredient-update' pk=ingredient.pk %}">Update</a>
           </td>
           <td>
             <a href="#">Delete</a>

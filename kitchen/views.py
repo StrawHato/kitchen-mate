@@ -80,6 +80,10 @@ class CookListView(generic.ListView):
     paginate_by = 5
 
 
+class CookDetailView(generic.DetailView):
+    model = Cook
+
+
 class IngredientListView(generic.ListView):
     model = Ingredient
     paginate_by = 5

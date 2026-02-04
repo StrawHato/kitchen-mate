@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>Ingredient List
@@ -6,6 +7,12 @@
       Create
     </a>
   </h1>
+  <form method="get" action="" class="form-inline">
+    {{ search_form|crispy }}
+    <input class="btn btn-secondary" type="submit" value="🔍">
+  </form>
+  <br>
+
   {% if ingredient_list %}
     <table class="table">
       <tr>
@@ -32,6 +39,6 @@
       {% endfor %}
     </table>
   {% else %}
-    <p>There are no Dish Types in the Kitchen</p>
+    <p>There are no ingredients in the Kitchen</p>
   {% endif %}
 {% endblock %}

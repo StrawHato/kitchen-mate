@@ -4,11 +4,11 @@
   <a href="{% url 'kitchen:dish-list' %}"><-Back to dishes</a>
   <h1>
     {{ dish.name }}
+    <a href="{% url 'kitchen:dish-update' pk=dish.pk %}" class="btn btn-secondary link-to-page">
+      Update
+    </a>
     <a href="#" class="btn btn-danger link-to-page">
       Delete
-    </a>
-    <a href="#" class="btn btn-secondary link-to-page">
-      Update
     </a>
   </h1>
 

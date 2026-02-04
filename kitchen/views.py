@@ -97,6 +97,11 @@ class CookExperienceUpdateView(generic.UpdateView):
     success_url = reverse_lazy("kitchen:cook-list")
 
 
+class CookDeleteView(generic.DeleteView):
+    model = Cook
+    success_url = reverse_lazy("kitchen:cook-list")
+
+
 class IngredientListView(generic.ListView):
     model = Ingredient
     paginate_by = 5

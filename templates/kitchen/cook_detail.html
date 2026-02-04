@@ -26,5 +26,5 @@
   </div>
 
   <a href="{% url 'kitchen:cook-update' pk=cook.pk %}" class="btn btn-primary">Update experience</a>
-  <a href="#" class="btn btn-secondary">Delete</a>
+  <a href="{% url 'kitchen:cook-delete' pk=cook.pk %}" class="btn btn-secondary">Delete</a>
 {% endblock %}

@@ -44,3 +44,12 @@ class CookExperienceUpdateForm(forms.ModelForm):
     class Meta:
         model = Cook
         fields = ("years_of_experience",)
+
+
+class DishTypeSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "search by name"}),
+    )

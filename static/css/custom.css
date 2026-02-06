@@ -5,3 +5,15 @@ body {
 .main-content {
   min-height: calc(100vh - 160px);
 }
+
+.navbar .nav-link {
+  font-weight: 500;
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+}
+
+.navbar form {
+  margin-bottom: 0;
+}

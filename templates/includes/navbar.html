@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+  <div class="container">
+
+    <a class="navbar-brand font-weight-bold" href="{% url 'kitchen:main-page' %}">
+      🍳 Kitchen Mate
+    </a>
+
+    <button class="navbar-toggler shadow-none ms-2" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navigation"
+            aria-controls="navigation" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navigation">
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kitchen:dish-list' %}">Dishes</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kitchen:dish-types-list' %}">Dish Types</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kitchen:cook-list' %}">Cooks</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kitchen:ingredient-list' %}">Ingredients</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+          <li class="nav-item d-flex align-items-center me-2">
+            <span class="text-sm text-muted">
+              Hi, {{ user.username }}
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-primary btn-sm mb-0">
+                Logout
+              </button>
+            </form>
+          </li>
+        {% else %}
+
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="btn btn-primary btn-sm mb-0">
+              Login
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+
+  </div>
+</nav>

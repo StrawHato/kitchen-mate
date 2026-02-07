@@ -17,3 +17,69 @@ body {
 .navbar form {
   margin-bottom: 0;
 }
+
+.footer {
+  border-top: 1px solid #eee;
+}
+
+.page-header {
+  background-position: center;
+  background-size: cover;
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 2;
+}
+
+.page-header h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page-header .lead {
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+#count-stats h1 {
+  font-size: 2.5rem;
+}
+
+#count-stats h6 {
+  font-weight: 600;
+}
+
+#count-stats p {
+  margin-bottom: 0;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeUp 1s ease-out forwards;
+}
+
+.fade-in-delay {
+  opacity: 0;
+  animation: fadeUp 1s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}

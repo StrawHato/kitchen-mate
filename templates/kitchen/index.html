@@ -1,17 +1,83 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}
-  <title>Home page</title>
-{% endblock %}
+{% block title %}Home page{% endblock %}
 
 {% block content %}
-  <h1>Kitchen Home</h1>
-  <p>Welcome to our Kitchen with the most delicious dishes!</p>
-  <h3>Kitchen content:</h3>
-  <ul>
-    <li>Number of our Cooks: {{ num_cooks }}</li>
-    <li>Number of our Dishes: {{ num_dishes }}</li>
-    <li>Number of our DishTypes: {{ num_dish_types }}</li>
-  </ul>
-  <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}</p>
+
+  <header class="header-2">
+    <div class="page-header min-vh-75 relative" style="background-image: url('{% static "img/home-background.jpg" %}')">
+      <span class="mask bg-gradient-primary opacity-1"></span>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 text-center mx-auto">
+            <h1 class="text-white display-4 fw-bold fade-in">
+              Best Kitchen Service
+            </h1>
+            <p class="lead text-white mt-3 fade-in-delay">
+              Manage dishes, cooks and ingredients in one place.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n8">
+
+    <section class="pt-4 pb-4" id="count-stats">
+      <div class="container">
+        <div class="row text-center">
+
+          <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 stat-card">
+              <h1 class="text-gradient text-primary">
+                {{ num_dishes }}+
+              </h1>
+              <h6 class="mt-2">Dishes</h6>
+              <p class="text-sm">Various dishes available</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 stat-card">
+              <h1 class="text-gradient text-primary">
+                {{ num_cooks }}+
+              </h1>
+              <h6 class="mt-2">Cooks</h6>
+              <p class="text-sm">Professional kitchen staff</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 stat-card">
+              <h1 class="text-gradient text-primary">
+                {{ num_dish_types }}+
+              </h1>
+              <h6 class="mt-2">Dish types</h6>
+              <p class="text-sm">Different categories</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-3 mb-4">
+            <div class="p-3 stat-card">
+              <h1 class="text-gradient text-primary">
+                {{ num_ingredients }}
+              </h1>
+              <h6 class="mt-2">Ingredients</h6>
+              <p class="text-sm">Fresh and quality products</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <p class="text-center text-sm text-muted mt-3">
+      You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}
+    </p>
+
+  </div>
+
 {% endblock %}

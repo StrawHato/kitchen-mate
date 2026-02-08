@@ -201,3 +201,12 @@ body {
   margin: 40px 0;
   box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
+
+.template-container {
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px;
+  padding: 32px;
+  margin: 80px auto;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}

@@ -1,42 +1,86 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <a href="{% url 'kitchen:dish-list' %}"><-Back to dishes</a>
-  <h1>
-    {{ dish.name }}
-    <a href="{% url 'kitchen:dish-update' pk=dish.pk %}" class="btn btn-secondary link-to-page">
-      Update
-    </a>
-    <a href="{% url 'kitchen:dish-delete' pk=dish.pk %}" class="btn btn-danger link-to-page">
-      Delete
-    </a>
-  </h1>
 
-  <p>Dish Type: {{ dish.dish_type }}</p>
-  <p>Description: {{ dish.description }}</p>
-  <h3>Cooks
+<div style="
+  background: rgba(255,255,255,0.96);
+  border-radius: 16px;
+  padding: 32px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+">
+
+  <a href="{% url 'kitchen:dish-list' %}" class="d-inline-block mb-3">
+    ← Back to dishes
+  </a>
+
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <h1 class="mb-0">{{ dish.name }}</h1>
+
+    <div class="d-flex gap-2">
+      <a href="{% url 'kitchen:dish-update' pk=dish.pk %}"
+         class="btn btn-secondary">
+        Update
+      </a>
+      <a href="{% url 'kitchen:dish-delete' pk=dish.pk %}"
+         class="btn btn-danger">
+        Delete
+      </a>
+    </div>
+  </div>
+
+  <p><strong>Dish Type:</strong> {{ dish.dish_type }}</p>
+  <p><strong>Description:</strong> {{ dish.description|default:"—" }}</p>
+
+  <hr>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">Cooks</h3>
+
     {% if user in dish.cooks.all %}
-      <a href="{% url 'kitchen:toggle-assign' pk=dish.id %}" class="btn btn-danger link-to-page">Delete me from this dish</a>
+      <a href="{% url 'kitchen:toggle-assign' pk=dish.id %}"
+         class="btn btn-danger">
+        Remove me from this dish
+      </a>
     {% else %}
-      <a href="{% url 'kitchen:toggle-assign' pk=dish.id %}" class="btn btn-primary link-to-page">Assign me to this dish</a>
+      <a href="{% url 'kitchen:toggle-assign' pk=dish.id %}"
+         class="btn btn-primary">
+        Assign me to this dish
+      </a>
     {% endif %}
-  </h3>
+  </div>
+
+  {% if dish.cooks.all %}
+    <ul class="list-unstyled">
+      {% for cook in dish.cooks.all %}
+        <li class="mb-3">
+          <strong>{{ cook.username }}</strong><br>
+          {{ cook.first_name }} {{ cook.last_name }}<br>
+          <small class="text-muted">
+            {{ cook.years_of_experience }} years of experience
+          </small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">No cooks assigned yet.</p>
+  {% endif %}
+
   <hr>
-  <ul>
-    {% for cook in dish.cooks.all %}
-      <li><strong>Username:</strong> {{ cook.username }}</li>
-      <li><strong>Full Name:</strong> {{ cook.first_name }} {{ cook.last_name }}</li>
-      <li><strong>Years of Experience:</strong> {{ cook.years_of_experience }}</li>
-      <br>
-    {% endfor %}
-  </ul>
-  <hr>
+
   <h3>Ingredients</h3>
-  <hr>
-  <ul>
-    {% for ingredient in dish.ingredients.all %}
-      <li><strong>Name:</strong> {{ ingredient.name }}</li>
-      <br>
-    {% endfor %}
-  </ul>
+
+  {% if dish.ingredients.all %}
+    <ul>
+      {% for ingredient in dish.ingredients.all %}
+        <li>{{ ingredient.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">No ingredients added.</p>
+  {% endif %}
+
+</div>
+
 {% endblock %}

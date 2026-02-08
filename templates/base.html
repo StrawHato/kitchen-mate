@@ -17,6 +17,8 @@
   {% block extra_css %}{% endblock %}
 </head>
 
+{% block scripts %}{% endblock %}
+
 <body style="
   background-image:
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
@@ -34,6 +36,8 @@
       {% include "includes/pagination.html" %}
     </div>
   </main>
+
+  {% block waves %}{% endblock %}
 
   {% include "includes/footer.html" %}
 

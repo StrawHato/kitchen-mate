@@ -120,15 +120,15 @@ body {
 .form-card input,
 .form-card textarea,
 .form-card select {
-  background-color: #fff !important;
-  border: 1px solid #ced4da !important;
-  border-radius: 6px !important;
+    background-color: #fff !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 6px !important;
 
-  padding: 12px 14px !important;
+    padding: 12px 14px !important;
 
-  color: #344767 !important;
-  font-size: 1rem;
-  line-height: 1.4;
+    color: #344767 !important;
+    font-size: 1rem;
+    line-height: 1.4;
 }
 
 .form-card input:focus,
@@ -149,64 +149,128 @@ body {
 }
 
 .form-card input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
+    position: absolute;
+    opacity: 0;
 }
 
 .form-card input[type="checkbox"] + label {
-  position: relative;
-  padding-left: 32px;
-  cursor: pointer;
-  user-select: none;
-  color: #344767;
+    position: relative;
+    padding-left: 32px;
+    cursor: pointer;
+    user-select: none;
+    color: #344767;
 }
 
 .form-card input[type="checkbox"] + label::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #ced4da;
-  border-radius: 5px;
-  background: #fff;
-  transition: all 0.2s ease;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ced4da;
+    border-radius: 5px;
+    background: #fff;
+    transition: all 0.2s ease;
 }
 
 .form-card input[type="checkbox"]:checked + label::before {
-  background: #e91e63;
-  border-color: #e91e63;
+    background: #e91e63;
+    border-color: #e91e63;
 }
 
 .form-card input[type="checkbox"]:checked + label::after {
-  content: "✓";
-  position: absolute;
-  left: 4px;
-  top: 0;
-  font-size: 14px;
-  color: #fff;
-  font-weight: 700;
+    content: "✓";
+    position: absolute;
+    left: 4px;
+    top: 0;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
 }
 
 .form-card input[type="checkbox"]:checked + label {
-  color: #e91e63;
-  font-weight: 600;
+    color: #e91e63;
+    font-weight: 600;
 }
 
 .page-card {
-  background: rgba(255,255,255,0.96);
-  border-radius: 16px;
-  padding: 32px;
-  margin: 40px 0;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 40px 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .template-container {
-  max-width: 600px;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 16px;
-  padding: 32px;
-  margin: 80px auto;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 80px auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-text {
+  margin-top: clamp(80px, 12vh, 140px);
+  margin-bottom: 60px;
+}
+
+footer {
+    position: relative;
+    z-index: 2;
+}
+
+.wave-wrapper {
+    position: relative;
+    height: 160px;
+    margin-top: -140px;
+    overflow: hidden;
+}
+
+.wave-wrapper svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wave {
+    fill: rgba(255, 255, 255, 0.85);
+    transform-origin: center bottom;
+    animation: waveFloat 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.wave1 {
+    opacity: 0.75;
+    animation-duration: 6s;
+    animation: waveFloat 6s ease-in-out infinite;
+}
+
+.wave2 {
+    opacity: 0.4;
+    animation-duration: 8s;
+    animation: waveFloat 7.5s ease-in-out infinite reverse;
+}
+
+.wave3 {
+    opacity: 0.25;
+    animation-duration: 10s;
+}
+
+.wave4 {
+    opacity: 0.25;
+    animation-duration: 10s;
+}
+
+@keyframes waveFloat {
+    0% {
+        transform: scaleY(1) translateY(0);
+    }
+    50% {
+        transform: scaleY(1.28) translateY(0);
+    }
+    100% {
+        transform: scaleY(1) translateY(0);
+    }
 }

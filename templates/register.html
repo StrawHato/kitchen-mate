@@ -1,0 +1,42 @@
+{% load static %}
+{% load crispy_forms_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign in | Kitchen Mate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link href="{% static 'css/material-kit.css' %}" rel="stylesheet">
+  <link href="{% static 'css/auth.css' %}" rel="stylesheet">
+</head>
+
+<body class="auth-page"
+      style="background-image: url('{% static "images/auth-kitchen.jpg" %}')">
+
+<nav class="auth-navbar">
+  <div class="auth-navbar-inner">
+    <div class="auth-title">
+      Kitchen Mate
+    </div>
+
+    <a
+        href="https://github.com/StrawHato/kitchen-mate"
+        target="_blank"
+        class="btn btn-github"
+    >
+      PROJECT ON GITHUB
+    </a>
+  </div>
+</nav>
+
+<div class="auth-overlay"></div>
+
+<div class="auth-container">
+  {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

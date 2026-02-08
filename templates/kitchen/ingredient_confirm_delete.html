@@ -1,11 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Delete Ingredient</h1>
-  <p>Are you sure you want to delete Ingredient: {{ ingredient }}</p>
-  <form action="" method="post">
+
+<div class="template-container">
+
+  <h1 class="text-danger mb-3">
+    Delete Ingredient
+  </h1>
+
+  <p class="mb-4">
+    Are you sure you want to delete ingredient:
+    <strong>{{ ingredient }}</strong>?
+  </p>
+
+  <form method="post">
     {% csrf_token %}
-    <input type="submit" value="Yes, delete" class="btn btn-danger">
-    <a href="{% url 'kitchen:ingredient-list' %}" class="btn btn-secondary link-to-page">Cancel</a>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-danger">
+        Yes, delete
+      </button>
+
+      <a href="{% url 'kitchen:ingredient-list' %}" class="btn btn-secondary">
+        Cancel
+      </a>
+    </div>
   </form>
+
+</div>
+
 {% endblock %}

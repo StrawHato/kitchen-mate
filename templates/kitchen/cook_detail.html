@@ -1,30 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <a href="{% url 'kitchen:cook-list' %}"><-Back to Cooks</a>
-  <h1>
-    Username: {{ cook.username }}
-  </h1>
+
+<div style="
+  background: rgba(255,255,255,0.96);
+  border-radius: 16px;
+  padding: 32px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+">
+
+  <a href="{% url 'kitchen:cook-list' %}" class="d-inline-block mb-3">
+    ← Back to cooks
+  </a>
+
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <h1 class="mb-0">{{ cook.username }}</h1>
+
+    <div class="d-flex gap-2">
+      <a href="{% url 'kitchen:cook-update' pk=cook.pk %}"
+         class="btn btn-primary">
+        Update experience
+      </a>
+      <a href="{% url 'kitchen:cook-delete' pk=cook.pk %}"
+         class="btn btn-danger">
+        Delete
+      </a>
+    </div>
+  </div>
 
   <p><strong>First name:</strong> {{ cook.first_name }}</p>
   <p><strong>Last name:</strong> {{ cook.last_name }}</p>
   <p><strong>Years of experience:</strong> {{ cook.years_of_experience }}</p>
-  <p><strong>Is staff:</strong> {{ cook.is_staff }}</p>
+  <p><strong>Is staff:</strong> {{ cook.is_staff|yesno:"Yes,No" }}</p>
 
-  <div class="ml-3">
-    <h4>Dishes</h4>
+  <hr>
 
-    {% for dish in cook.dishes.all %}
-        <hr>
-        <p><strong>Name:</strong> {{ dish.name }}</p>
-        <p><strong>Dish Type:</strong> {{ dish.dish_type.name }}</p>
-        <p class="text-muted"><strong>Id:</strong> {{ dish.id }}</p>
+  <h4>Dishes</h4>
 
-    {% empty %}
-      <p>No dishes!</p>
-    {% endfor %}
-  </div>
+  {% if cook.dishes.all %}
+    <ul class="list-unstyled mt-3">
+      {% for dish in cook.dishes.all %}
+        <li class="mb-3">
+          <strong>{{ dish.name }}</strong><br>
+          <span class="text-muted">
+            {{ dish.dish_type.name }} · ID {{ dish.id }}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">No dishes assigned.</p>
+  {% endif %}
 
-  <a href="{% url 'kitchen:cook-update' pk=cook.pk %}" class="btn btn-primary">Update experience</a>
-  <a href="{% url 'kitchen:cook-delete' pk=cook.pk %}" class="btn btn-secondary">Delete</a>
+</div>
+
 {% endblock %}

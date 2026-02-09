@@ -6,3 +6,4 @@ pep8-naming
 crispy-bootstrap5
 django-debug-toolbar
 django-crispy-forms
+python-dotenv

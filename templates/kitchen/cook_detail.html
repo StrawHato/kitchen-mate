@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-card">
+
+  <a href="{% url 'kitchen:cook-list' %}" class="d-inline-block mb-3">
+    ← Back to cooks
+  </a>
+
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <h1 class="mb-0">{{ cook.username }}</h1>
+
+    <div class="d-flex gap-2">
+      <a href="{% url 'kitchen:cook-update' pk=cook.pk %}"
+         class="btn btn-primary">
+        Update experience
+      </a>
+      <a href="{% url 'kitchen:cook-delete' pk=cook.pk %}"
+         class="btn btn-danger">
+        Delete
+      </a>
+    </div>
+  </div>
+
+  <p><strong>First name:</strong> {{ cook.first_name }}</p>
+  <p><strong>Last name:</strong> {{ cook.last_name }}</p>
+  <p><strong>Years of experience:</strong> {{ cook.years_of_experience }}</p>
+  <p><strong>Is staff:</strong> {{ cook.is_staff|yesno:"Yes,No" }}</p>
+
+  <hr>
+
+  <h4>Dishes</h4>
+
+  {% if cook.dishes.all %}
+    <ul class="list-unstyled mt-3">
+      {% for dish in cook.dishes.all %}
+        <li class="mb-3">
+          <strong>{{ dish.name }}</strong><br>
+          <span class="text-muted">
+            {{ dish.dish_type.name }} · ID {{ dish.id }}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">No dishes assigned.</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}
